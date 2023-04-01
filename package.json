@@ -1,0 +1,30 @@
+{
+  "name": "express-common-middlewares",
+  "version": "1.0.1",
+  "description": "Common express middlewares",
+  "type": "commonjs",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "./build/**/*"
+  ],
+  "scripts": {
+    "test": "jest --watchAll",
+    "clean": "del ./build/*",
+    "build": "npm run clean && tsc"
+  },
+  "keywords": [
+    "express",
+    "middlewares"
+  ],
+  "author": {
+    "name": "nsnl-coder",
+    "email": "nsnl.coder@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "del-cli": "^5.0.0",
+    "typescript": "^5.0.3"
+  }
+}
