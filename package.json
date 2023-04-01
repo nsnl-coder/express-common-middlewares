@@ -1,6 +1,6 @@
 {
   "name": "express-common-middlewares",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Common express middlewares",
   "type": "commonjs",
   "main": "./build/index.js",
