@@ -6,6 +6,17 @@ import jwt2Cookie from '../../utils/jwt2Cookie';
 import signJwt from '../../utils/signJwt';
 import createUser from '../../utils/createUser';
 
+it('should return success message token is valid and user is verified', async () => {
+  const user = await createUser({
+    isVerified: true,
+  });
+
+  const jwt = signJwt(user._id);
+  const cookie = jwt2Cookie(jwt);
+
+  await request(app).get('/require-login').set('Cookie', cookie).expect(200);
+});
+
 it('should return error if user is not logged in', async () => {
   const response = await request(app)
     .get('/require-login')

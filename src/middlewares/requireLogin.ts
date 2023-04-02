@@ -3,12 +3,14 @@ import { Model } from 'mongoose';
 
 const jwt = require('jsonwebtoken');
 
-interface RequestWithUser extends Request {
-  user?: any;
+declare module 'express' {
+  interface Request {
+    user?: any;
+  }
 }
 
 const requireLogin = (User: Model<any>) => {
-  return async (req: RequestWithUser, res: Response, next: NextFunction) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     const jwtToken = req.cookies?.jwt;
 
     if (!jwtToken) {

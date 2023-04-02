@@ -13,6 +13,10 @@ const schema = mongoose.Schema(
     friends: {
       type: mongoose.Schema.Types.ObjectId,
     },
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+    },
     passwordChangedAt: Date,
   },
   { timestamps: true },
