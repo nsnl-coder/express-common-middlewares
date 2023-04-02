@@ -9,7 +9,7 @@ const checkIdExistence = (One: Model<any>, fieldname: string) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const ids = req.body[fieldname];
 
-    if (typeof ids === 'string' && !ids) next();
+    if (!ids) next();
     if (Array.isArray(ids) && ids.length === 0) next();
 
     if (typeof ids === 'string') {
