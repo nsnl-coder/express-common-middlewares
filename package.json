@@ -1,6 +1,6 @@
 {
   "name": "express-common-middlewares",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Common express middlewares",
   "main": "./build/index.js",
   "jest": {
