@@ -13,6 +13,10 @@ const requireLogin = (User: Model<any>) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const jwtToken = req.cookies?.jwt;
 
+    if (!User) {
+      console.log('Please call requireLogin with User model');
+    }
+
     if (!jwtToken) {
       return res.status(401).json({
         status: 'fail',

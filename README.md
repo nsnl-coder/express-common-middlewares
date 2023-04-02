@@ -8,16 +8,17 @@
 
 ## requireLogin
 
-In order to make this middleware work, you need to pass in User model created from express.Model.
+In order to make this middleware work:
+
+- you need to pass in User model created from express.Model as an arguement
+- defined process.env.JWT_SECRET
+- apply `cookie-parse` into express app
 
 ```javascript
 router.use('/require-login', requireLogin(User), (req, res, next) => {
   res.status(200).json({ status: 'success', message: 'pass the test' });
 });
 ```
-
-This middleware will read jwt token from `req.cookies.jwt` and jwt secret from process.env.JWT_SECRET therefore you need to dedine them.  
-If pass the check, `requireLogin` will pass the user into req.user.
 
 ## requireRole
 
