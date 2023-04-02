@@ -1,13 +1,13 @@
-interface Color {
-  red: number;
-  green: number;
-  blue: number;
-}
+const checkIdExistence = require('./middleware/checkIdExistence');
+const globalErrorHandler = require('./middleware/checkIdExistence');
+const requireLogin = require('./middleware/requireLogin');
+const requireRole = require('./middleware/requireRole');
+const routeNotFound = require('./middleware/routeNotFound');
 
-const color: Color = {
-  red: 10,
-  blue: 10,
-  green: 10,
+export {
+  checkIdExistence,
+  requireLogin,
+  requireRole,
+  routeNotFound,
+  globalErrorHandler,
 };
-
-module.exports = color;

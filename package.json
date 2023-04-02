@@ -2,8 +2,14 @@
   "name": "express-common-middlewares",
   "version": "1.0.2",
   "description": "Common express middlewares",
-  "type": "commonjs",
   "main": "./build/index.js",
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
+  },
   "types": "./build/index.d.ts",
   "files": [
     "./build/**/*"
@@ -11,7 +17,8 @@
   "scripts": {
     "test": "jest --watchAll",
     "clean": "del ./build/*",
-    "build": "npm run clean && tsc"
+    "build": "npm run clean && tsc",
+    "start": "ts-node src/config/app.ts"
   },
   "keywords": [
     "express",
@@ -23,8 +30,26 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.0",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.11",
+    "@types/supertest": "^2.0.12",
     "del-cli": "^5.0.0",
+    "jest": "^29.5.0",
+    "mongodb-memory-server": "^8.12.1",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3"
   }
 }

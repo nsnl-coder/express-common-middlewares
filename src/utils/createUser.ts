@@ -1,4 +1,4 @@
-import { User } from '../../models/userModel';
+import { User } from '../models/userModel';
 
 const createUser = async (payload: any) => {
   const user = await User.create({ email: 'test@test.com', ...payload });
