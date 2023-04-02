@@ -9,13 +9,16 @@ declare module 'express' {
   }
 }
 
-const requireLogin = (User: Model<any>) => {
+const requireLogin = (User: Model<any>, res?: any) => {
+  if (res) {
+    res.status(500).json({
+      status: 'fail',
+      message: 'Dont forget to call requireLogin with user model',
+    });
+  }
+
   return async (req: Request, res: Response, next: NextFunction) => {
     const jwtToken = req.cookies?.jwt;
-
-    if (!User) {
-      console.log('Please call requireLogin with User model');
-    }
 
     if (!jwtToken) {
       return res.status(401).json({

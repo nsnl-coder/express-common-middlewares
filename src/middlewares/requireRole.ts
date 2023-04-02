@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 const requireRole = (...roles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user) {
-      console.log('Please user requireLogin before requireRole!');
+      console.log('Please use requireLogin before requireRole!');
     }
 
     if (roles.length === 0) {

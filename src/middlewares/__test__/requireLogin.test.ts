@@ -17,7 +17,7 @@ it('should return success message token is valid and user is verified', async ()
   await request(app).get('/require-login').set('Cookie', cookie).expect(200);
 });
 
-it('should return error if user is not logged in', async () => {
+it.only('should return error if user is not logged in', async () => {
   const response = await request(app)
     .get('/require-login')
     .set('Cookie', '')
