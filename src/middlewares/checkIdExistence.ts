@@ -9,8 +9,8 @@ const checkIdExistence = (fieldname: string, One: Model<any>) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const ids = req.body[fieldname];
 
-    if (!ids) next();
-    if (Array.isArray(ids) && ids.length === 0) next();
+    if (!ids) return next();
+    if (Array.isArray(ids) && ids.length === 0) return next();
 
     if (typeof ids === 'string') {
       const data = await One.findById(ids);
