@@ -5,7 +5,7 @@ import { Model } from 'mongoose';
  * express middleware to make sure an object id exists in database
  * this middleware accept mongoose model & field name that contain objectid
  */
-const checkIdExistence = (One: Model<any>, fieldname: string) => {
+const checkIdExistence = (fieldname: string, One: Model<any>) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const ids = req.body[fieldname];
 
