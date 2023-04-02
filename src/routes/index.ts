@@ -9,7 +9,7 @@ const router = express.Router();
 // add friend
 router.use(
   '/check-id-existence',
-  checkIdExistence(User, 'friends'),
+  checkIdExistence('friends', User),
   (req, res, next) => {
     res.status(200).json({ status: 'success', message: 'pass the test' });
   },
