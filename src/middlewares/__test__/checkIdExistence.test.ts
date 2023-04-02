@@ -2,6 +2,27 @@ import request from 'supertest';
 import createUser from '../../utils/createUser';
 import { app } from '../../config/app';
 
+describe('undefined id', () => {
+  it('should return 200 if array of user is empty', async () => {
+    const response = await request(app)
+      .post('/check-id-existence')
+      .send({
+        friends: [],
+      })
+      .expect(200);
+    expect(response.body.status).toEqual('success');
+  });
+
+  it('should return 200 if users is not defined', async () => {
+    const response = await request(app)
+      .post('/check-id-existence')
+      .send({})
+      .expect(200);
+
+    expect(response.body.status).toEqual('success');
+  });
+});
+
 describe('single id', () => {
   it('should return error if userid is not exist', async () => {
     const response = await request(app)

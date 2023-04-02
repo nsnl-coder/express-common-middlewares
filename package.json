@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "test": "jest --watchAll",
+    "testv": "jest --watchAll --verbose",
     "clean": "del ./build/*",
     "build": "npm run clean && tsc",
     "start": "ts-node src/config/app.ts"
