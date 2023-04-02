@@ -1,8 +1,8 @@
-const checkIdExistence = require('./middleware/checkIdExistence');
-const globalErrorHandler = require('./middleware/checkIdExistence');
-const requireLogin = require('./middleware/requireLogin');
-const requireRole = require('./middleware/requireRole');
-const routeNotFound = require('./middleware/routeNotFound');
+const checkIdExistence = require('./middlewares/checkIdExistence');
+const globalErrorHandler = require('./middlewares/checkIdExistence');
+const requireLogin = require('./middlewares/requireLogin');
+const requireRole = require('./middlewares/requireRole');
+const routeNotFound = require('./middlewares/routeNotFound');
 
 export {
   checkIdExistence,
