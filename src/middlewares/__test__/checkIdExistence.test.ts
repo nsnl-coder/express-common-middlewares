@@ -1,5 +1,5 @@
 import request from 'supertest';
-import createUser from './utils';
+import createUser from '../../utils/createUser';
 import { app } from '../../config/app';
 
 describe('single id', () => {

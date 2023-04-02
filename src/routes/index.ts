@@ -30,4 +30,9 @@ router.use(
   },
 );
 
+// require role
+router.use('/global-error-handler', (req, res, next) => {
+  throw new Error('just a normal error message');
+});
+
 export default router;

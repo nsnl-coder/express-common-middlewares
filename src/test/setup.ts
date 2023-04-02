@@ -1,5 +1,3 @@
-/// <reference types="node" />
-
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 
@@ -14,6 +12,7 @@ beforeAll(async () => {
 
 // function run before each test
 beforeEach(async () => {
+  process.env.NODE_ENV = 'test';
   const collections = await mongoose.connection.db.collections();
 
   for (let collection of collections) {

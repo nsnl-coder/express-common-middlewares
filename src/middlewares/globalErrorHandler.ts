@@ -24,7 +24,10 @@ const globalErrorHandler = (
     formarttedError = error.message;
   }
 
-  if (formarttedError === 'Something wentwrong') {
+  if (
+    formarttedError === 'Something wentwrong' &&
+    process.env.NODE_ENV !== 'test'
+  ) {
     console.log(error);
   }
 
