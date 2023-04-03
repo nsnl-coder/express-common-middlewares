@@ -2,6 +2,11 @@
 
 import { NextFunction, Request, Response } from 'express';
 
+const handleDuplicationField = (error: any) => {
+  const duplicateField = Object.keys(error.keyValue)[0];
+  return `${duplicateField} already exists. Please choose another ${duplicateField}`;
+};
+
 const globalErrorHandler = (
   error: any,
   req: Request,
@@ -22,6 +27,10 @@ const globalErrorHandler = (
     error.name === 'CastError'
   ) {
     formarttedError = error.message;
+  }
+
+  if (error.code === 11000) {
+    formarttedError = handleDuplicationField(error);
   }
 
   if (
