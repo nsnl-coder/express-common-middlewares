@@ -3,6 +3,7 @@
 - `requireLogin`: check if user is login
 - `requireRole`: check if user is admin
 - `checkIdExistene`: check if an objectid exists in a mongodb collection
+- `checkOwnership`: check if a document is created by currently logged in user
 - `globalErrorHandler`: express global error handler
 - `routeNotFound`: simple prewritten function to handle route not found error
 
@@ -15,6 +16,8 @@ In order to make this middleware work:
 - apply `cookie-parse` into express app
 
 ```javascript
+const { requireLogin } = require('express-common-middlewares');
+
 router.use('/require-login', requireLogin(User), (req, res, next) => {
   res.status(200).json({ status: 'success', message: 'pass the test' });
 });
@@ -26,6 +29,8 @@ Require role simple check if req.user.role has a specific role.
 
 ```javascript
 // in this example, it check if user has role of admin
+const { requireLogin, requireRole } = require('express-common-middlewares');
+
 router.use(
   '/require-role',
   requireLogin(User),
@@ -39,7 +44,7 @@ router.use(
 It can also check if user has one of multiple roles
 
 ```javascript
-// in this example, it check if user has role of admin
+// in this example, it check if user has roles of admin, write or support
 router.use(
   '/require-role',
   requireLogin(User),
@@ -60,7 +65,7 @@ Check if all the object ids inside `req.body.friends` do exist.
 ```javascript
 router.use(
   '/check-id-existence',
-  checkIdExistence(User, 'friends'),
+  checkIdExistence(User, 'friends'), // check if all ids in friends exist in db
   (req, res, next) => {
     res.status(200).json({ status: 'success', message: 'pass the test' });
   },
@@ -74,6 +79,18 @@ You can check whatever field in whatever mongodb collection you want, not just `
 
 This middleware accept mongoose model as an argument.
 It will check if the document with `id = req.params.id` createdBy current login user.
+
+```javascript
+// in this example, it check if user has role of admin
+router.use(
+  '/:id',
+  requireLogin(User),
+  requireOwnership(Product), // check if user has ownership to product with id = req.params.id
+  (req, res, next) => {
+    res.status(200).json({ status: 'success', message: 'pass the test' });
+  },
+);
+```
 
 **Behaviour**:
 
@@ -94,6 +111,12 @@ It will check if the document with `id = req.params.id` createdBy current login 
 This middleware only handle jwt verify failure.
 Otherwise, it just return generic message: `Something wentwrong!`
 
+```javascript
+const app = express();
+
+app.use(globalErrorHandler);
+```
+
 ## Route not found
 
 This is everything this middleware do!
@@ -103,4 +126,10 @@ res.status(404).json({
   status: 'fail',
   message: 'This route is not defined',
 });
+```
+
+```javascript
+const app = express();
+
+app.use(routeNotFound);
 ```

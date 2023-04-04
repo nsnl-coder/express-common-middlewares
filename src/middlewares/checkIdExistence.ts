@@ -13,7 +13,7 @@ const checkIdExistence = (fieldname: string, One: Model<any>) => {
     if (Array.isArray(ids) && ids.length === 0) return next();
 
     if (typeof ids === 'string') {
-      const data = await One.findById(ids);
+      const data = await One.findById(ids).select('_id');
 
       if (!data) {
         return res.status(404).json({
