@@ -33,10 +33,7 @@ const globalErrorHandler = (
     formarttedError = handleDuplicationField(error);
   }
 
-  if (
-    formarttedError === 'Something wentwrong' &&
-    process.env.NODE_ENV !== 'test'
-  ) {
+  if (formarttedError === 'Something wentwrong') {
     console.log(error);
   }
 

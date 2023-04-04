@@ -70,6 +70,25 @@ router.use(
 It will throw error if `req.body.friends` contains an user id that does not exist.
 You can check whatever field in whatever mongodb collection you want, not just `req.body.friends` fields in `user collection`.
 
+## requireOwnership
+
+This middleware accept mongoose model as an argument.
+It will check if the document with `id = req.params.id` createdBy current login user.
+
+**Behaviour**:
+
+- return success if user have ownership to that doc
+- return success if user is admin
+- return error if user does not have ownership
+- return error if document with id params does not exist
+- return error if document does not contain createdBy field
+
+**Important note:**
+
+- the document that you checked ownership for need to have `createdBy` field contain creator userid
+- you need to use `requireLogin` middleware before using `requireOwnership` because + `requireOwnership` need to use `req.user`
+- The route you apply `requireOwnership` middleware must have `req.params.id`
+
 ## Global error handler
 
 This middleware only handle jwt verify failure.
