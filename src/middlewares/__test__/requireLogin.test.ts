@@ -82,7 +82,7 @@ it('should return error if encoded user id is not a valid id', async () => {
     .expect(400);
 
   expect(response.body.message).toEqual(
-    'Cast to ObjectId failed for value "invalid-user-id" (type string) at path "_id" for model "UserModel"',
+    'Cast to ObjectId failed for value "invalid-user-id" (type string) at path "_id" for model "user"',
   );
 });
 

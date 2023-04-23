@@ -9,14 +9,7 @@ declare module 'express' {
   }
 }
 
-const requireLogin = (User: Model<any>, res?: any) => {
-  if (res) {
-    res.status(500).json({
-      status: 'fail',
-      message: 'Dont forget to call requireLogin with user model',
-    });
-  }
-
+const requireLogin = (User: Model<any>, verifiedUserOnly: boolean = true) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const jwtToken = req.cookies?.jwt;
 
@@ -57,7 +50,7 @@ const requireLogin = (User: Model<any>, res?: any) => {
       }
     }
 
-    if (!user.isVerified) {
+    if (!user.isVerified && verifiedUserOnly) {
       return res.status(401).json({
         status: 'fail',
         message: 'Please verified your email to complete this action!',
